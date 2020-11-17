@@ -1,0 +1,118 @@
+<main id="mainaportes">
+    <app-aside></app-aside>
+    <section>
+        <h4 class="titulo">APORTES</h4>
+        <p class="crecimiento">Módulo Aportes.</p>
+
+        <div class="tabla">
+            <div class="busqueda">
+                <div class="botones">
+                    <i class="fas fa-file-excel"></i>
+                    <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-print"></i>
+                </div>
+
+                <div class="padre">
+                    <div class="padre-input">
+                        <i class="fas fa-search"></i>
+                        <input class="bu" type="text" placeholder="Buscar">
+                    </div>
+
+                    <button class="nuevo-feligres" (click)='crearAporte()'>
+                        <i class="fas fa-user-plus"></i>
+                        Nuevo Aporte
+                    </button>
+
+                </div>
+
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Identificación</th>
+                        <th>Nombre</th>
+                        <th>Clase</th>
+                        <th>Tipo</th>
+                        <th>Fondo</th>
+                        <th>Cantidad</th>
+                        <th>Acción</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>23-10-2013</td>
+                        <td>1070975932</td>
+                        <td>Andrés Sánchez</td>
+                        <td>Ofrenda</td>
+                        <td>Monetario</td>
+                        <td>General</td>
+                        <td>$ 995.000</td>
+                        <td>
+                            <i class="fas fa-trash icono-accion eliminar"></i>
+                            <i class="fas fa-pencil-alt icono-accion"></i>
+                        </td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+
+        </div>
+    </section>
+</main>
+
+
+
+
+
+<form class="formulario-consolidacion" id="aportes">
+
+    <div class="titulo-formulario">
+        <p>Agregar Aporte</p>
+        <span (click)='cerrarAportes()'>x</span>
+    </div>
+
+
+    <div class="grupo-formulario">
+     
+        <input required type="date">
+    </div>
+  
+    <div class="grupo-formulario">
+        <input required type="text">
+        <label>Identificación</label>
+
+    </div>
+
+    <div class="grupo-formulario">
+        <input required type="text">
+        <label>Nombre</label>
+
+    </div>
+
+    <div class="grupo-formulario">
+        <input required type="text">
+        <label>Clase</label>
+
+    </div>
+    <div class="grupo-formulario">
+        <input required type="text">
+        <label>Tipo</label>
+    </div>
+    <div class="grupo-formulario">
+        <input required type="text">
+        <label>Fondo</label>
+    </div>
+    <div class="grupo-formulario">
+        <input required type="number">
+        <label>Cantidad</label>
+    </div>
+    <button class="btn-agregar">Agregar</button>
+
+
+</form>

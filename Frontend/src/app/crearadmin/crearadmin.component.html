@@ -1,0 +1,129 @@
+<main id="principal">
+    <app-aside></app-aside>
+    <section>
+        <h4 class="titulo">ADMINISTRADORES</h4>
+        <p class="crecimiento">Crear Nuevo.</p>
+
+        <div class="tabla">
+            <div class="busqueda">
+                <div class="botones">
+                    <i class="fas fa-file-excel"></i>
+                    <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-print"></i>
+                </div>
+
+                <div class="padre">
+                    <div class="padre-input [(ngModel)]='datosAdmin.nombres'">
+                        <i class="fas fa-search"></i>
+                        <input  class="bu" type="text" placeholder="Buscar">
+                    </div>
+
+                    <button class="nuevo-feligres" (click)='crearAdmin()'>
+                        <i class="fas fa-user-plus"></i>
+                        Nuevo Admin
+                    </button>
+
+                </div>
+
+            </div>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Grupo</th>
+                        <th>Email</th>
+                        <th>Contraseña</th>
+                        <th>Acción</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor='let admin of admins'>
+                        <td>{{admin.nombres}}</td>
+                        <td>{{admin.apellidos}}</td>
+                        <td>{{admin.grupo}}</td>
+                        <td>{{admin.correo}}</td>
+                        <td>{{admin.password}}</td>
+
+                        <td>
+                            <i class="fas fa-trash icono-accion eliminar" (click)='eliminarAdmin(admin._id)'></i>
+                            <i class="fas fa-pencil-alt icono-accion" (click)='editarAdmin(admin._id,admin)'></i>
+                        </td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+
+        </div>
+    </section>
+</main>
+
+
+
+
+    <form #heroForm='ngForm' class="formulario-consolidacion" id="admins">
+
+        <div class="titulo-formulario">
+            <p>{{crear ? 'Crear' : 'Editar'}} Administrador</p>
+            <span (click)='cerrarFormulario()'>x</span>
+        </div>
+    
+    
+        <div class="grupo-formulario">
+            <input [(ngModel)]='datosAdmin.nombres' name='nombres' required type="text">
+            <label>Nombres</label>
+    
+        </div>
+        <div class="grupo-formulario">
+            <input [(ngModel)]='datosAdmin.apellidos' name='apellidos' required type="text">
+            <label>Apellidos</label>
+    
+        </div>
+    
+        
+
+        <div class="grupo-formulario" >
+            <select name='grupo' [(ngModel)]='datosAdmin.grupo'>
+                <option value="">Selecciona un grupo</option>
+                <option value="Escuela de siervos">Escuela de siervos</option>
+                <option value="Restauración">Casas de restauración</option>
+                <option value="Dominical">Escuela dominical</option>
+                <option value="Celulas">Celulas</option>
+            </select>
+        </div>
+
+    
+        <div class="grupo-formulario">
+            <input [(ngModel)]='datosAdmin.correo' maxlength="20" name='correo' required type="text">
+            <label>Email</label>
+    
+        </div>
+        <div class="grupo-formulario">
+            <input [(ngModel)]='datosAdmin.password' maxlength="10" name='password' required type="password">
+            <label>Contraseña</label>
+        </div>
+        <div class="grupo-formulario">
+            <input [(ngModel)]='datosAdmin.password2' maxlength="10"  name='password2'required type="password">
+            <label>Repetir Contraseña</label>
+        </div> 
+
+       
+        <div *ngIf='incompletos' class="error-contraseña" >Todos los campos son obligatorios</div>
+        <div *ngIf='contra' class="error-contraseña" >Las contraseñas no coinciden</div>
+        <div *ngIf='email' class="error-contraseña" >Dirección de correo invalida</div>
+        <div *ngIf='existe' class="error-contraseña" >Ya hay un usuario registrado con este correo</div>
+        
+      
+        <button class="btn-agregar" *ngIf='crear' (click)='postearAdmin($event);'>Crear</button>
+        <button class="btn-agregar" *ngIf='!crear' (click)='adminEditado($event);'>Guardar</button> 
+    
+    
+    </form>
+    
+    
+    

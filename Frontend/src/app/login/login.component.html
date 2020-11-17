@@ -1,0 +1,32 @@
+
+
+<div class="login" >
+    <form class="formulario-ingreso">
+        <p class="cerrar" routerLink='/' >x</p>
+        <div class="cont-logo">
+            <img class="logo-formulario" src="../../assets/img/logo.png" alt="logo-fenix">
+        </div>
+        
+        <p class="fenix">INICIAR SESIÓN</p>
+        <p *ngIf='error' class="error-datos">Datos incorrectos</p>
+        
+        <label >Correo</label>
+        <input [(ngModel)]='datosLogin.correo' name='correo' type="text">
+        <label >Contraseña</label>
+        <input [(ngModel)]='datosLogin.password' name='password' type="password">
+  
+
+        <div class="relleno">
+            <div class="recordarme">
+                <input type="checkbox">
+                <small >Recordarme</small>
+            </div>
+            <small>Recuperar contraseña  </small>
+        </div>
+       
+        <button class="btnfenix" (click)='loguearse()'><i class="fas fa-dragon"></i> Ingresar</button>
+        <button class="btnfacebook"><i class="fab fa-facebook-f"></i> Iniciar con Facebook</button>
+        <button class="btngoogle"><i class="fab fa-google"></i> Iniciar con Google</button>
+
+    </form>
+</div>

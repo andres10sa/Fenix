@@ -1,0 +1,172 @@
+<main id="main">
+    <app-aside></app-aside>
+    <section>
+        <h4 class="titulo">CONSOLIDACIÓN</h4>
+        <p class="crecimiento">Módulo Consolidación.</p>
+
+        
+        <div class="tabla">
+            <div class="busqueda">
+                <div class="botones">
+                    <i class="fas fa-file-excel"></i>
+                    <i class="fas fa-file-pdf"></i>
+                    <i class="fas fa-print"></i>
+                </div>
+                
+                <div class="padre">
+                    <div class="padre-input">
+                        <i class="fas fa-search"></i>
+                        <input  class="bu" type="text" placeholder="Buscar">
+                    </div>
+                    
+                    <button class="nuevo-feligres" (click)='agregarFeligres()'>
+                        <i class="fas fa-user-plus"></i>
+                        Nuevo Feligres
+                    </button>
+                   
+                </div>
+               
+              
+            </div> 
+          
+            
+            <table>
+        
+            <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Tipo documento</th>
+                    <th>N° Documento</th>
+                    <th>Género</th>
+                    <th>Edad</th>
+                    <th>Celular</th>
+                    <th>Email</th>
+                    <th>Red</th>
+                    <th>Grupo</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+    <tbody>
+
+        <tr *ngFor='let feligres of feligreses'>
+            
+            <td>{{feligres.nombres}}</td>
+            <td>{{feligres.apellidos}}</td>
+            <td>cc</td>
+            <td>{{feligres.documento}}</td>
+            <td>{{feligres.genero}}</td>
+            <td>{{feligres.edad}}</td>
+            <td>{{feligres.celular}}</td>
+            <td>{{feligres.correo}}</td>
+            <td>{{feligres.ministerio}}</td>
+            <td>{{feligres.grupo}}</td>
+            <td>
+                <i class="fas fa-trash icono-accion eliminar" (click)='eliminarFeligres(feligres._id)'></i>
+                <i class="fas fa-pencil-alt icono-accion" (click)='guardarDatosFeligres(feligres._id,feligres)'></i>
+            </td>
+        </tr>
+        
+
+    </tbody>
+        
+           
+        </table>  
+
+        </div>
+
+    </section>
+</main>
+
+
+<form #heroForm='ngForm' class="formulario-consolidacion" id="consolidacion">
+    
+    <div class="titulo-formulario">
+        <p>{{crear ? 'Agregar':'Editar'}} Feligres</p>
+        <span (click)='ocultarFormulario()'>x</span>
+    </div>
+
+
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosFeligres.nombres' name='nombres' required type="text">
+        <label>Nombres</label>
+      
+    </div>
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosFeligres.apellidos' name='apellidos' required type="text">
+        <label>Apellidos</label>
+       
+    </div>
+    <div class="grupo-formulario">
+        <select>
+            <option value="">Tipo de documento</option>
+            <option value="ti">Tarjeta de identidad</option>
+            <option value="cc">Cédula de ciudadania</option>
+            <option value="ce">Cédula extranjera</option>
+            <option value="otra">Otra</option>
+        </select>
+    </div>
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosFeligres.documento' maxlength="10" name='documento' required type="text">
+        <label>Cédula</label>
+        
+    </div>
+    
+    <div class="grupo-formulario">
+        <select name='genero' [(ngModel)]='datosFeligres.genero'>
+            <option value="">Selecciona tu género</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+        </select>
+    </div>
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosFeligres.edad'  name='edad' required type="number">
+        <label>Edad</label>
+       
+    </div>
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosFeligres.celular'maxlength="10" name='celular' required type="text">
+        <label>Celular</label>
+      
+    </div>
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosFeligres.correo' maxlength="20" name='correo' required type="text">
+        <label>Email</label>
+       
+    </div>
+   
+
+    <div class="grupo-formulario" >
+        <select name='ministerio' [(ngModel)]='datosFeligres.ministerio'>
+            <option value="">Selecciona un ministerio</option>
+            <option value="Alabanza">Alabanza</option>
+            <option value="Ujieres">Ujieres</option>
+            <option value="Audiovisuales">Audiovisuales</option>
+            <option value="Intercesión">Intercesión</option>
+            <option value="Juvenil">Juvenil</option>
+            <option value="Infantil">Infantil</option>
+            <option value="Ninguno">Ninguno</option>
+        </select>
+    </div>
+    
+
+    <div class="grupo-formulario" >
+        <select name='grupo' [(ngModel)]='datosFeligres.grupo'>
+            <option value="">Selecciona un grupo</option>
+            <option value="Escuela de siervos">Escuela de siervos</option>
+            <option value="Restauración">Casas de restauración</option>
+            <option value="Escuela dominical">Escuela dominical</option>
+            <option value="Celulas">Celulas</option>
+            <option value="Ninguno">Ninguno</option>
+        </select>
+    </div>
+    
+    <div *ngIf='incompletos' class="error-contraseña" >Todos los campos son obligatorios</div>
+    <div *ngIf='email' class="error-contraseña" >Dirección de correo invalida</div>
+    <div *ngIf='existe' class="error-contraseña" >Ya hay un usuario registrado con este correo</div>
+
+    <button *ngIf='crear' class="btn-agregar" (click)='postearFeligres($event)'>Agregar</button>
+    <button *ngIf='!crear' class="btn-agregar" (click)='editarFeligres($event)'>Guardar</button>
+
+    
+</form>

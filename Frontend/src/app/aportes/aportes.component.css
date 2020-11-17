@@ -1,0 +1,308 @@
+main{
+    display: flex;
+    transition: .4s all;
+}
+ app-aside{
+    color: #115c8f;
+    background-color: #f2f2f2;
+    width: 25%;
+    height: 100vh;
+    color: #FFF;
+    padding: 20px 40px;
+} 
+
+app-aside>.logo{
+    margin-top: 60px;
+  width: 200px;
+  margin-bottom: 30px;
+}
+
+
+main>section{
+     width: 75%; 
+    padding-bottom: 200px;
+}
+.titulo{
+    text-align: center;
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-top: 36px;
+}
+.crecimiento{
+    color: grey;
+    text-align: center;
+}
+
+
+
+table,.busqueda{
+    margin: auto;
+    width: 95%;
+    font-size: 14px;
+
+}
+.busqueda{
+  
+   margin-top: 30px;
+   padding: 10px 0;
+   display: flex;
+   justify-content: space-between;
+ }
+ .nuevo-feligres{
+    background-color: #115c8f;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    justify-content: center;
+    border: none;
+    transition: .4s all;
+ }
+ .nuevo-feligres>.fa-user-plus{
+     position: relative;
+     bottom: 2px;
+     margin-right: 5px;
+ }
+ .nuevo-feligres:focus{
+    outline: none;
+ }
+ .nuevo-feligres:active{
+    transform: scale(.97);
+ }
+ .nuevo-feligres>p{
+    margin: 0;
+ }
+ .botones>.fas{
+
+  width: 30px;
+  height: 30px;
+  color: #fff;
+  padding-top: 10px;
+  font-size: 13px;
+  cursor: pointer;
+ }
+ .fa-file-excel{
+    background-color: #28a745;
+    border-radius: 4px 0 0 4px;
+    padding-left: 10px;
+    transition: .4s all;
+    box-shadow: 0px -1px 6px 0px transparent;
+ }
+ .fa-file-excel:hover{ 
+    box-shadow: 0px -1px 6px 0px #28a745;
+ }
+ .fa-file-pdf{
+    background-color: #dc3545;
+    padding-left: 10px;
+    transition: .4s all;
+    box-shadow: 0px -1px 6px 0px transparent;
+
+ }
+ .fa-file-pdf:hover{ 
+    box-shadow: 0px -1px 6px 0px #dc3545;
+ }
+ .fa-print{
+    background-color: #17a2b8;
+    border-radius: 0 4px 4px 0;
+    padding-left: 8px;
+    transition: .4s all;
+    box-shadow: 0px -1px 6px 0px transparent;
+ }
+ .fa-print:hover{ 
+    box-shadow: 0px -1px 6px 0px #17a2b8;
+ }
+thead{
+   background-color: #115c8f;
+   color: #fff;
+   border-radius: 12px;
+   border: 1px solid #ccc;
+ 
+}
+table, th,tr,td{
+    text-align: center;
+    border-collapse: collapse;
+    font-size: 13px;
+
+}
+tr,th,td{
+   border: 1px solid #ccc;
+
+}
+
+tbody{
+   border-radius: 40px;
+   overflow: hidden;
+}
+
+th,td{
+ padding: 6px 20px;
+
+}
+th{
+    border: 1px solid grey;
+}
+.oscuro{
+    
+    background-color: #f7f7f7;
+}
+
+tr>th{
+   padding: 10px 20px;
+}
+.encabezado{
+    display: flex;
+
+    
+}
+.icono-accion{
+ background-color: green;
+ font-size: 10px;
+ padding: 5px;
+ color: #fff;
+ cursor: pointer;
+ border-radius: 2px;
+ opacity: 1;
+ transition: .4s all;
+ margin: 0 3px;
+}
+.icono-accion:hover{
+    opacity: .8;
+  }
+.eliminar{
+   background-color: rgb(161, 0, 0);
+}
+
+/* formulario consolidacion */
+.formulario-consolidacion{
+    background-color: #fff;
+    position: absolute;
+    width: 400px;
+    left: 50%;
+    top: -700px;
+  
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    transition: 1s all;
+
+}
+.titulo-formulario{
+    border-bottom: 1px solid #ccc;
+    padding:10px 20px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    color: #115c8f;
+
+}
+.titulo-formulario>p{
+  margin: 0;
+}
+.titulo-formulario>span{
+   font-size: 20px;
+   cursor: pointer;
+  }
+.grupo-formulario{
+    margin: 20px auto 0 auto;
+    width: 93%;
+    position: relative;
+}
+.grupo-formulario>input{
+   width: 100%;
+   z-index: 3000;
+   border: 1px solid #ccc;
+   padding: 3px 6px;
+   border-radius: 4px;
+   transition: .4s all;
+   color: rgba(0, 0, 0, .7);
+   font-size: 15px;
+}
+
+.grupo-formulario>input:focus{
+   outline: none;
+ }
+ .grupo-formulario>input:valid~label{
+    top: -15px;
+    font-size: 11px;
+    color: #115c8f;
+    left: 0;
+    font-weight: 500;
+  }
+ .grupo-formulario>input:focus~label{
+    top: -15px;
+    font-size: 11px;
+    color: #115c8f;
+    left: 0;
+    font-weight: 500;
+  }
+.grupo-formulario>select{
+    width: 100%;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 6px 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: grey;
+ }
+ .grupo-formulario>select:focus{
+    outline: none;
+ }
+.grupo-formulario>label{
+    position: absolute;
+    font-size: 13px;
+    left: 8px;
+    top: 7px;
+    z-index: 1;
+    transition: .4s all;
+    color: grey;
+   
+ }
+ .btn-agregar{
+     width: 160px;
+     padding: 4px;
+     border: none;
+     cursor: pointer;
+     background-color: #115c8f;
+     margin: 20px 0;
+     color: #fff;
+     border-radius: 4px;
+     transition: .4s all;
+     
+ }
+ .btn-agregar:focus{
+   outline: none;
+}
+.btn-agregar:active{
+    transform: scale(.97);
+ }
+
+
+ .padre{
+   position: relative;
+   display: flex;
+}
+ .bu{
+   margin: 0 10px;
+   padding: 5px 18px;
+   font-size: 14px;
+   border: none;
+   border-bottom: 1px solid #ccc;
+   background-color: transparent;
+   width: 200px;
+    
+ }
+ .padre-input{
+    position: relative;
+ }
+ .padre-input>.fa-search{
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    cursor: pointer;
+ }

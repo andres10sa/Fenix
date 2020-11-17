@@ -1,0 +1,37 @@
+
+ footer{
+    background-color: #115c8f;
+    color: #fff;
+    text-align: center;
+    display: block;
+    padding: 20px;
+  
+}
+
+footer>.iconos{
+    text-align: center;
+}
+footer p{
+    margin: 0;
+}
+
+footer>.iconos>.icono-red{
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    font-size: 16px;
+    padding-left: 1px;
+    padding-top: 7px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 0 5px;
+    color: #115c8f;
+    transition: .4s all;
+    box-shadow: 2px 2px 17px 0px transparent;
+}
+footer>.iconos>.icono-red:hover{
+    box-shadow: 2px 2px 17px 0px rgba(0,0,0,0.75);
+}
+
+

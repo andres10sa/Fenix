@@ -1,0 +1,155 @@
+header{
+    background-color: #115c8f;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    text-align: center;
+    align-items: center;
+
+}
+header>.cont-nombre>.titulo{
+ font-size: 33px;
+ letter-spacing: 1px;
+}
+header>.grupo-input{
+    position: relative;
+}
+
+header>.grupo-input>input{
+   padding:7px 26px;
+   border-radius: 3px;
+   border: none;
+   width: 220px;
+}
+header>.grupo-input>.icono-lupa{
+    position: absolute;
+    left: 0;
+    color: #115c8f;
+    top: 11px;
+    left: 5px;
+    cursor: pointer;
+ }
+header>.grupo-input>input:focus{
+    outline: none;
+ }
+
+ .logo{
+     width: 100px;
+ }
+ .header2{
+     padding: 10px 100px;
+ }
+
+ .menu a{
+    margin: 0 10px;
+    font-size: 16px;
+    cursor: pointer;
+    color: #fff;
+}
+.menu a:hover{
+   color: #ff9203;
+}
+
+.menu a>.fas{
+    margin: 0 5px;
+}
+
+/*------------------- LOGIN------------ */
+.login{
+    background-color: #115c8f;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 100000;
+}
+.login>.formulario-ingreso{
+    width: 380px;
+    background-color: #fff;
+    margin: 150px auto;
+    border-radius: 6px;
+    position: relative;
+    padding: 20px;
+}
+.cont-logo{
+    display: flex;
+    justify-content: center;
+}
+.login>.formulario-ingreso .logo-formulario{
+    width: 140px;
+ 
+}
+.fenix{
+    color: #115c8f;
+    font-weight: 600;
+    text-align: center;
+    margin:10px;
+    letter-spacing: 1px;
+    font-size: 20px;
+}
+.login>.formulario-ingreso>input{
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+.login>.formulario-ingreso>label{
+    margin-top:10px;
+    margin-bottom:2px;
+    color: #115c8f;
+}
+.login>.formulario-ingreso button{
+    width: 100%;
+    padding: 6px;
+    border: none;
+    color: #fff;
+    border-radius: 4px;
+    transition: .4s all;
+}
+.btnfenix{
+    margin-top: 20px;
+    background-color: #ff9203;
+}
+.btnfacebook{
+    margin-top: 8px;
+    background-color: #3b5998 ;
+}
+.btngoogle{
+    margin-top: 8px;
+    background-color: #db4a39 ;
+}
+.login>.formulario-ingreso button:hover{
+   opacity: .9;
+}
+.relleno{
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   margin-top: 10px;
+}
+.relleno small{
+    color: #115c8f;
+    cursor: pointer;
+    font-weight: 500;
+   
+}
+.recordarme>input{
+    margin-right: 5px;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+}
+.cerrar{
+   
+    font-size: 26px;
+    cursor: pointer;
+    position: absolute;
+    margin: 0;
+    bottom: 15px;
+    color: #115c8f;
+    right: 10px;
+    top: -2px;
+
+}

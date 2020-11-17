@@ -1,0 +1,28 @@
+<header *ngIf='logueado'>
+    <div class="cont-nombre">
+        <h3 class="titulo">FÉNIX MINISTERIAL</h3>
+    </div>
+    
+    <div class="grupo-input">
+        <input  type="text" placeholder="Buscar">
+        <i class="fas fa-search icono-lupa"></i>
+
+    </div>
+ 
+</header>
+
+
+<header class="header2" *ngIf='!logueado'>
+    <img class="logo" src="../../assets/img/logo.png" alt="imagen">
+    <nav class="menu">
+        <a><i class="fas fa-home"></i>HOME</a>
+        <a><i class="fas fa-toolbox"></i>MÓDULOS</a>
+        <a><i class="fas fa-credit-card"></i>PLANES</a>
+        <a><i class="fas fa-address-book"></i>CONTÁCTANOS</a>
+        <a routerLink='/login'><i class="fas fa-user"></i> INICIAR SESIÓN</a>
+    </nav>
+</header>
+
+
+
+

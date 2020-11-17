@@ -1,0 +1,23 @@
+
+ aside{
+     height: 100vh;
+ }
+ aside>.logo{
+    margin-top: 60px;
+   width: 200px;
+   margin-bottom: 30px;
+ }
+ aside>nav{
+     cursor: pointer;
+     color: #115c8f;
+ }
+ aside p:hover{
+     opacity: .8;
+     text-decoration: none;
+ }
+ aside p:focus{
+     outline: none;
+ }
+ aside .fas{
+     margin: 0 8px;
+ } 
