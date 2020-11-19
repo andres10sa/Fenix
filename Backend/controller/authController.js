@@ -12,8 +12,8 @@ exports.validarLogin = async(req,res)=>{
         if (usuario.password !== req.body.password)
           return res.status(400).send("Datos invalidos");
         //Generar un JWT
-        const jwToken = usuario.generateJWT();
-        res.status(200).send({ jwToken });
+        const jwtToken = usuario.generateJWT();
+        res.status(200).send({ jwtToken,usuario });
 
     } catch (error) {
         console.log(error);
