@@ -14,6 +14,7 @@ import { ContactanosComponent } from './home/contactanos/contactanos.component';
 
 
 
+import {AuthGuard} from './guard/auth.guard';
 
 const routes: Routes = [
 
@@ -21,11 +22,11 @@ const routes: Routes = [
   {path:'modulos', component: ModulosComponent},
   {path:'planes', component: PlanesComponent},
   {path:'contactanos', component: ContactanosComponent},
-  {path:'aportes',component:AportesComponent},
-  {path:'consolidacion',component:ConsolidacionComponent},
-  {path:'crear-admin',component:CrearadminComponent},
-  {path:'grupos-estudio',component:GruposestudioComponent},
-  {path:'ministerios',component:MinisteriosComponent},
+  {path:'aportes',component:AportesComponent,canActivate:[AuthGuard]},
+  {path:'consolidacion',component:ConsolidacionComponent,canActivate:[AuthGuard]},
+  {path:'crear-admin',component:CrearadminComponent,canActivate:[AuthGuard]},
+  {path:'grupos-estudio',component:GruposestudioComponent,canActivate:[AuthGuard]},
+  {path:'ministerios',component:MinisteriosComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
 ];
 

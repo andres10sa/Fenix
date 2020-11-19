@@ -12,6 +12,9 @@ export class AuthService {
  
    
   constructor(private http:HttpClient) { }
+
+  tokensave=''
+
   crearAdmin(admin){
    return this.http.post<any>(this.adminUrl,admin)
   }  
@@ -38,5 +41,11 @@ export class AuthService {
   }
   editarFeligres(id,admin){
     return this.http.put<any>(this.feligresUrl+id,admin);
+  }
+  loginOn(){
+    return !!localStorage['token'];
+  }
+  obtenerToken(){
+    return localStorage['token']
   }
 }
