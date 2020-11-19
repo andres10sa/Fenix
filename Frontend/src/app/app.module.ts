@@ -15,6 +15,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {AuthService} from './service/auth.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ModulosComponent } from './home/modulos/modulos.component';
+import { PlanesComponent } from './home/planes/planes.component';
+import { ContactanosComponent } from './home/contactanos/contactanos.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { HomeComponent } from './home/home.component';
     AportesComponent,
     LoginComponent,
     HomeComponent,
+    ModulosComponent,
+    PlanesComponent,
+    ContactanosComponent,
   
   ],
   imports: [
