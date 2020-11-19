@@ -10,11 +10,13 @@ import { ConsolidacionComponent } from './consolidacion/consolidacion.component'
 import { CrearadminComponent } from './crearadmin/crearadmin.component';
 import { MinisteriosComponent } from './ministerios/ministerios.component';
 import { AportesComponent } from './aportes/aportes.component';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
 import {AuthService} from './service/auth.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import {AuthGuard} from './guard/auth.guard';
+import {TokenInterceptorService} from './service/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +37,14 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,AuthGuard,{
+    provide:HTTP_INTERCEPTORS,
+    useClass:TokenInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

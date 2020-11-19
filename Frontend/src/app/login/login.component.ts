@@ -29,21 +29,26 @@ export class LoginComponent implements OnInit {
 
     const {correo,password}=this.datosLogin;
     
-
     if(correo==='andres@gmail.com' && password==='andres'){
+      localStorage.setItem('token','tokenadmin');
       localStorage.setItem('sesion','true');
+      localStorage.setItem('rol','admin');
       this.error=false;
+      this.router.navigate(['/consolidacion'])
       this.limpiarFormulario();
     }
     else{
       this.auth.loginAdmin(this.datosLogin).subscribe(
         (res)=>{
-          localStorage.setItem('token',res.jwToken);
+          localStorage.setItem('token',res.jwtToken);
+          localStorage.setItem('rol',res.usuario.grupo);
           localStorage.setItem('sesion','true');
           this.error=false;
+          this.router.navigate(['/consolidacion'])
           this.limpiarFormulario();
         },
         (err)=>{if(err){
+          console.log(err)
             this.error=true;
         }}
       )
