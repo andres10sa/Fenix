@@ -13,9 +13,9 @@
                 </div>
 
                 <div class="padre">
-                    <div class="padre-input [(ngModel)]='datosAdmin.nombres'">
+                    <div class="padre-input ">
                         <i class="fas fa-search"></i>
-                        <input  class="bu" type="text" placeholder="Buscar">
+                        <input  [(ngModel)]='busqueda' class="bu" type="text" placeholder="Buscar" (ngModelChange)='filtrar()'>
                     </div>
 
                     <button class="nuevo-feligres" (click)='crearAdmin()'>
@@ -31,10 +31,32 @@
 
                 <thead>
                     <tr>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Grupo</th>
-                        <th>Email</th>
+                        <th>
+                            Nombres
+                            <span class="flechas">
+                    
+                                <i class='fas fa-long-arrow-alt-up flecha activa' (click)='nombreAscendente()' id="nA"></i>
+                                <i class='fas fa-long-arrow-alt-down flecha' (click)='nombreDescendente()' id="nZ"></i>
+                            </span>
+                            
+                        </th>
+                        <th>
+                            Apellidos
+                            <i class='fas fa-long-arrow-alt-up flecha ' (click)='apellidoAscendente()' id="aA"></i>
+                            <i class='fas fa-long-arrow-alt-down flecha' (click)='apellidoDescendente()' id="aZ"></i>
+                        </th>
+                        <th>
+                            Grupo
+                            <i class='fas fa-long-arrow-alt-up flecha ' (click)='grupoAscendente()' id="gA"></i>
+                            <i class='fas fa-long-arrow-alt-down flecha' (click)='grupoDescendente()' id="gZ"></i>
+
+                        </th>
+                        <th>
+                            Email
+                            <i class='fas fa-long-arrow-alt-up flecha ' (click)='emailAscendente()' id="eA"></i>
+                            <i class='fas fa-long-arrow-alt-down flecha' (click)='emailDescendente()' id="eZ"></i>
+    
+                        </th>
                         <th>Contraseña</th>
                         <th>Acción</th>
 
@@ -106,9 +128,10 @@
         <div class="grupo-formulario">
             <input [(ngModel)]='datosAdmin.password' maxlength="10" name='password' required type="password">
             <label>Contraseña</label>
+
         </div>
         <div class="grupo-formulario">
-            <input [(ngModel)]='datosAdmin.password2' maxlength="10"  name='password2'required type="password">
+            <input [(ngModel)]='datosAdmin.password2' maxlength="10"  name='password2'required type='tipoFormulario'>
             <label>Repetir Contraseña</label>
         </div> 
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {Router} from '@angular/router';
+import { abort } from 'process';
+
 
 @Component({
   selector: 'app-crearadmin',
@@ -17,9 +19,12 @@ export class CrearadminComponent implements OnInit {
   public contra:boolean;//Verifica si las contraseñas son iguales
   public email:boolean;//Verifica si el correo es valido
   public existe:boolean;//Verifica si el usuario existe
+  public busqueda:string;//Término que lee del input de busqueda
+  public tipoFormulario:string//Tipo de formulario de contraseña
+
+
 
   constructor(public auth:AuthService,private router:Router) { 
-
     this.incompletos=false;
     this.contra=false;
     this.email=false;
@@ -31,6 +36,7 @@ export class CrearadminComponent implements OnInit {
     this.obtenerAdmins();
     this.ruta();
   }
+  
   ruta(){
     localStorage.setItem('ruta','Crear administrador')
   }
@@ -43,6 +49,7 @@ export class CrearadminComponent implements OnInit {
     password:'',
     password2:''
   }
+ 
   
   //Muestra el formulario para crear admin
   crearAdmin(){
@@ -60,18 +67,46 @@ export class CrearadminComponent implements OnInit {
   }
   //Obtener admins
   obtenerAdmins(){
+  
     this.auth.obtenerAdmins().subscribe(
       (res)=>{
-        this.admins=res;
+        if(this.busqueda){
+          let nuevo=res;
+          let actual=[];
+          nuevo.forEach(ele => {
+            let nombres =ele['nombres'].toLowerCase();
+            let apellidos=ele['apellidos'].toLowerCase();
+            let grupo=ele['grupo'].toLowerCase();
+            let correo=ele['correo'].toLowerCase();
+            if(nombres.includes(this.busqueda) || apellidos.includes(this.busqueda) || grupo.includes(this.busqueda) || correo.includes(this.busqueda)){
+              actual.push(ele);
+          }
+        });
+        let ordenado=actual;
+        ordenado=this.ordenarArray(ordenado,'nombres');
+        this.admins=ordenado;
+        }else{
+          this.admins=this.ordenarArray(res,'nombres');
+        }
+
         let correos=[];
         res.forEach(ele=>correos.push(ele['correo']));
         this.correos=correos;
       },
       (err)=>console.log(err)
     )
+ 
     
   }
-  //Eliminar admin
+  filtrar(){
+    this.activarFlecha('nA');
+    this.desactivarFlechas('nZ','aA','aZ','gA','gZ','eA','eZ');
+    this.obtenerAdmins();
+  }
+
+  
+  
+
   eliminarAdmin(id){
    this.auth.eliminarAdmin(id).subscribe(
     (res)=>{
@@ -79,7 +114,6 @@ export class CrearadminComponent implements OnInit {
     },
     (err)=>console.log(err)
   )
-
   }
 
   //Editar admin
@@ -132,6 +166,13 @@ export class CrearadminComponent implements OnInit {
   cerrarFormulario(){
     document.getElementById('admins').style.top='-700px';
     document.getElementById('principal').style.background='#fff';
+    setTimeout(() => {
+      this.incompletos=false;
+      this.contra=false;
+      this.email=false;
+      this.existe=false;
+    }, 1000);
+  
 
   }
   //postear Admin
@@ -182,4 +223,84 @@ export class CrearadminComponent implements OnInit {
       password2:''
     }
   }
+  
+  ordenarArray(array,propiedad){
+    array.sort((a,b)=>{
+      if(a[propiedad]<b[propiedad]){
+        return -1;
+      }
+      if(a[propiedad]>b[propiedad]){
+        return 1;
+      }
+      return 0;
+   })
+   return array;
+  }
+  desordenarArray(array,propiedad){
+    array.sort((a,b)=>{
+      if(a[propiedad]<b[propiedad]){
+        return 1;
+      }
+      if(a[propiedad]>b[propiedad]){
+        return -1;
+      }
+      return 0;
+   })
+   return array;
+  }
+  activarFlecha(a){
+    document.getElementById(a).style.color='#fff';
+    
+   }
+   desactivarFlechas(a,b,c,d,e,f,g){
+     document.getElementById(a).style.color='grey';
+     document.getElementById(b).style.color='grey';
+     document.getElementById(c).style.color='grey';
+     document.getElementById(d).style.color='grey';
+     document.getElementById(e).style.color='grey';
+     document.getElementById(f).style.color='grey';
+     document.getElementById(g).style.color='grey';
+   }
+ 
+  nombreAscendente(){
+    this.admins=this.ordenarArray(this.admins,'nombres');
+    this.activarFlecha('nA');
+    this.desactivarFlechas('nZ','aA','aZ','gA','gZ','eA','eZ');
+  }
+  nombreDescendente(){
+    this.admins=this.desordenarArray(this.admins,'nombres');
+    this.activarFlecha('nZ');
+    this.desactivarFlechas('nA','aA','aZ','gA','gZ','eA','eZ');
+  }
+  apellidoAscendente(){
+    this.admins=this.ordenarArray(this.admins,'apellidos');
+    this.activarFlecha('aA');
+    this.desactivarFlechas('nA','nZ','aZ','gA','gZ','eA','eZ');
+  }
+  apellidoDescendente(){
+    this.admins=this.desordenarArray(this.admins,'apellidos');
+    this.activarFlecha('aZ');
+    this.desactivarFlechas('nA','nZ','aA','gA','gZ','eA','eZ');
+  }
+  grupoAscendente(){
+    this.admins=this.ordenarArray(this.admins,'grupo');
+    this.activarFlecha('gA');
+    this.desactivarFlechas('nA','nZ','aZ','gZ','aA','eA','eZ');
+  }
+  grupoDescendente(){
+    this.admins=this.desordenarArray(this.admins,'grupo');
+    this.activarFlecha('gZ');
+    this.desactivarFlechas('nA','nZ','aA','aZ','gA','eA','eZ');
+  }
+  emailAscendente(){
+    this.admins=this.ordenarArray(this.admins,'correo');
+    this.activarFlecha('eA');
+    this.desactivarFlechas('nA','nZ','aZ','gZ','aA','gA','eZ');
+  }
+  emailDescendente(){
+    this.admins=this.desordenarArray(this.admins,'correo');
+    this.activarFlecha('eZ');
+    this.desactivarFlechas('nA','nZ','aA','aZ','gA','gZ','eA');
+  }
+ 
 }

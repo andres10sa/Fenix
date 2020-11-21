@@ -17,6 +17,14 @@ app-aside>.logo{
   margin-bottom: 30px;
 }
 
+.flecha{
+  margin-left: 5px;
+  cursor: pointer;
+  color: #ccc;
+}
+.activa{
+   color: #fff;
+}
 
 main>section{
      width: 75%; 
@@ -125,6 +133,7 @@ thead{
    border: 1px solid #ccc;
  
 }
+
 table, th,tr,td{
     text-align: center;
     border-collapse: collapse;
@@ -178,8 +187,6 @@ tr>th{
 .eliminar{
    background-color: rgb(161, 0, 0);
 }
-
-
 
 
 
