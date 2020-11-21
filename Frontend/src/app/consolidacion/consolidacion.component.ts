@@ -16,7 +16,7 @@ export class ConsolidacionComponent implements OnInit {
   public email:boolean;
   public existe:boolean;
   public id:string;
-  constructor(private auth:AuthService,private router:Router) {
+  constructor(public auth:AuthService,private router:Router) {
     this.incompletos=false;
     this.email=false;
     this.existe=false;
@@ -24,6 +24,10 @@ export class ConsolidacionComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerFeligreses();
+    this.ruta();
+  }
+  ruta(){
+    localStorage.setItem('ruta','Consolidación')
   }
 
   
@@ -73,6 +77,7 @@ export class ConsolidacionComponent implements OnInit {
       },
       (err)=>console.log(err)
     )
+    
   }
   eliminarFeligres(id){
     this.auth.eliminarFeligres(id).subscribe(

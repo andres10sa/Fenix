@@ -28,6 +28,7 @@ const routes: Routes = [
   {path:'grupos-estudio',component:GruposestudioComponent,canActivate:[AuthGuard]},
   {path:'ministerios',component:MinisteriosComponent,canActivate:[AuthGuard]},
   {path:'login',component:LoginComponent},
+  // {path:'**',pathMatch:'full',redirectTo:''},
 ];
 
 @NgModule({

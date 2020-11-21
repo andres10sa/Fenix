@@ -8,9 +8,22 @@ header{
     align-items: center;
 
 }
+header>.cont-nombre{
+display: flex;
+align-items: center;
+}
 header>.cont-nombre>.titulo{
  font-size: 33px;
  letter-spacing: 1px;
+
+}
+.current{
+    position: relative;
+    top: 4px;
+    padding-left: 10px;
+    border-left: 2px solid #fff;
+    margin-left: 15px;
+    font-size: 18px;
 }
 header>.grupo-input{
     position: relative;

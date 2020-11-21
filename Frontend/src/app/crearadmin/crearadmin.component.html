@@ -1,4 +1,4 @@
-<main id="principal">
+<main id="principal" *ngIf='auth.obtenerRol()==="admin"'>
     <app-aside></app-aside>
     <section>
         <h4 class="titulo">ADMINISTRADORES</h4>

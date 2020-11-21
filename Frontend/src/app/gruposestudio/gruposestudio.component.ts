@@ -19,7 +19,7 @@ export class GruposestudioComponent implements OnInit {
   public dom:boolean;
   public res:boolean;
 
-  constructor(private auth:AuthService,private router:Router) { 
+  constructor(public auth:AuthService,private router:Router) { 
     this.cel=false;
     this.sie=false;
     this.dom=false;
@@ -28,8 +28,12 @@ export class GruposestudioComponent implements OnInit {
 
   ngOnInit(): void {
    this.obtenerIntegrantes();
+   this.ruta();
   }
-
+  ruta(){
+    // let url = this.router.url.slice(1)
+    localStorage.setItem('ruta','Grupos de estudio')
+  }
   registrosSiervo(){
     this.titulo='Escuela de siervos';
     this.cel=false;

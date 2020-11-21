@@ -34,8 +34,12 @@ export class MinisteriosComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerRegistros();
+    this.ruta();
   }
-
+  ruta(){
+    let url = this.router.url.slice(1)
+    localStorage.setItem('ruta','Ministerios')
+  }
   alabanza(){
     this.titulo='Alabanza';
     document.getElementById('ministerios').style.display='block';

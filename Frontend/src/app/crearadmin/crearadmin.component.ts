@@ -18,7 +18,7 @@ export class CrearadminComponent implements OnInit {
   public email:boolean;//Verifica si el correo es valido
   public existe:boolean;//Verifica si el usuario existe
 
-  constructor(private auth:AuthService,private router:Router) { 
+  constructor(public auth:AuthService,private router:Router) { 
 
     this.incompletos=false;
     this.contra=false;
@@ -29,6 +29,10 @@ export class CrearadminComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerAdmins();
+    this.ruta();
+  }
+  ruta(){
+    localStorage.setItem('ruta','Crear administrador')
   }
 
   datosAdmin ={

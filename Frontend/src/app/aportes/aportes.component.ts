@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-aportes',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AportesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
+    this.ruta();
   }
 
   
@@ -20,6 +22,9 @@ export class AportesComponent implements OnInit {
   cerrarAportes(){
     document.getElementById('aportes').style.top='-700px';
     document.getElementById('mainaportes').style.background='#fff';
+  }
+  ruta(){
+    localStorage.setItem('ruta','Aportes')
   }
 
 

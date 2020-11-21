@@ -1,6 +1,7 @@
-<header *ngIf="logueado">
+ <header *ngIf="auth.loginOn()">
   <div class="cont-nombre">
     <h3 class="titulo">FÉNIX MINISTERIAL</h3>
+    <p class="current">{{auth.obtenerRuta()}}</p>
   </div>
 
   <div class="grupo-input">
@@ -9,15 +10,15 @@
   </div>
 </header>
 
-<header class="header2 fixed-top" *ngIf="!logueado">
+<header class="header2 fixed-top" *ngIf="!auth.loginOn()">
   <img class="logo" src="../../assets/img/logo.png" alt="imagen" />
   <nav class="menu">
     <a routerLink=""><i class="fas fa-home"></i>HOME</a>
     <a routerLink="/modulos"><i class="fas fa-toolbox"></i>MÓDULOS</a>
     <a routerLink="/planes"><i class="fas fa-credit-card"></i>PLANES</a>
-    <a routerLink="/contactanos"
-      ><i class="fas fa-address-book"></i>CONTÁCTANOS</a
-    >
+    <a routerLink="/contactanos"><i class="fas fa-address-book"></i>CONTÁCTANOS</a>
     <a routerLink="/login"><i class="fas fa-user"></i> INICIAR SESIÓN</a>
   </nav>
-</header>
+</header> 
+
+

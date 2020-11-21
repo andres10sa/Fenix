@@ -153,10 +153,10 @@
     <div class="grupo-formulario" >
         <select name='grupo' [(ngModel)]='datosFeligres.grupo'>
             <option value="">Selecciona un grupo</option>
-            <option value="Escuela de siervos">Escuela de siervos</option>
-            <option value="Restauración">Casas de restauración</option>
-            <option value="Escuela dominical">Escuela dominical</option>
-            <option value="Celulas">Celulas</option>
+            <option *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Escuela de siervos"'  value="Escuela de siervos">Escuela de siervos</option>
+            <option *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Restauración"' value="Restauración">Casas de restauración</option>
+            <option *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Dominical"' value="Escuela dominical">Escuela dominical</option>
+            <option *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Celulas"' value="Celulas">Celulas</option>
             <option value="Ninguno">Ninguno</option>
         </select>
     </div>

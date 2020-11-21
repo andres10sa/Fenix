@@ -31,7 +31,6 @@ export class LoginComponent implements OnInit {
     
     if(correo==='andres@gmail.com' && password==='andres'){
       localStorage.setItem('token','tokenadmin');
-      localStorage.setItem('sesion','true');
       localStorage.setItem('rol','admin');
       this.error=false;
       this.router.navigate(['/consolidacion'])
@@ -42,7 +41,6 @@ export class LoginComponent implements OnInit {
         (res)=>{
           localStorage.setItem('token',res.jwtToken);
           localStorage.setItem('rol',res.usuario.grupo);
-          localStorage.setItem('sesion','true');
           this.error=false;
           this.router.navigate(['/consolidacion'])
           this.limpiarFormulario();

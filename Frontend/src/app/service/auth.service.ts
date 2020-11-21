@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Router} from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class AuthService {
   private feligresUrl = `http://localhost:3000/api/feligres/`;//crear feligres
  
    
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
 
   tokensave=''
 
@@ -43,9 +45,20 @@ export class AuthService {
     return this.http.put<any>(this.feligresUrl+id,admin);
   }
   loginOn(){
+    this.tokensave=localStorage['token'];
     return !!localStorage['token'];
   }
   obtenerToken(){
-    return localStorage['token']
+    return this.tokensave;
+  }
+  cerrarSesion(){
+    localStorage.clear();
+    this.router.navigate(['/'])
+  }
+  obtenerRuta(){
+    return localStorage['ruta'];
+  }
+  obtenerRol(){
+    return localStorage['rol']
   }
 }

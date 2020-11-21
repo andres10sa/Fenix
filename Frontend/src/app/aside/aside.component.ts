@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../service/auth.service';
 
 @Component({
   selector: 'app-aside',
@@ -8,15 +9,11 @@ import {Router} from '@angular/router';
 })
 export class AsideComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,public auth:AuthService) { }
 
   ngOnInit(): void {
   }
 
-  cerrarSesion(){
-    localStorage.setItem('sesion','false');
-    localStorage.removeItem('token');
-    this.router.navigate(['/'])
-  }
+ 
 
 }

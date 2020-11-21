@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../service/auth.service';
-import {Router} from '@angular/router';
+import {Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -9,21 +9,16 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  public logueado:boolean;//Observa si el usuario está logueado
-  
+  public current:string;
 
-  constructor(private auth:AuthService,private router:Router) {
-    this.logueado=false;
+  constructor(public auth:AuthService,private router:Router) {
+      this.current='';
    }
 
   ngOnInit(): void {
-    this.comprobarSesion();
+    
   }
 
-  comprobarSesion(){
-       if(localStorage['sesion']==='true'){
-        this.logueado=true;
-       }
-  }
+ 
 
 }
