@@ -16,34 +16,54 @@
                 <div class="padre">
                     <div class="padre-input">
                         <i class="fas fa-search"></i>
-                        <input  class="bu" type="text" placeholder="Buscar">
+                        <input  class="bu" type="text" placeholder="Buscar" [(ngModel)]='busqueda' (ngModelChange)='filtrar()'>
                     </div>
                     
                     <button class="nuevo-feligres" (click)='agregarFeligres()'>
                         <i class="fas fa-user-plus"></i>
                         Nuevo Feligres
                     </button>
-                   
                 </div>
-               
-              
             </div> 
           
-            
             <table>
         
             <thead>
                 <tr>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Tipo documento</th>
+                    <th>
+                        Nombres
+                        <i class='fas fa-long-arrow-alt-up flecha activo' (click)='nombreAscendente()' id="na"></i>
+                        <i class='fas fa-long-arrow-alt-down flecha' (click)='nombreDescendente()' id="nz"></i>
+                    </th>
+                    <th>
+                        Apellidos
+                        <i class='fas fa-long-arrow-alt-up flecha' (click)='apellidoAscendente()' id="aa"></i>
+                        <i class='fas fa-long-arrow-alt-down flecha'(click)='apellidoDescendente()' id="az"></i>
+                    </th>
+                    <th>Doc</th>
                     <th>N° Documento</th>
                     <th>Género</th>
-                    <th>Edad</th>
-                    <th>Celular</th>
-                    <th>Email</th>
-                    <th>Red</th>
-                    <th>Grupo</th>
+                    <th>
+                        Edad
+                        <i class='fas fa-long-arrow-alt-up flecha'(click)='edadAscendente()' id="eda"></i>
+                        <i class='fas fa-long-arrow-alt-down flecha' (click)='edadDescendente()' id="edz"></i>
+                    </th>
+                    <th>Celular  </th>
+                    <th>
+                        Email
+                        <i class='fas fa-long-arrow-alt-up flecha ' (click)='emailAscendente()' id="ema"></i>
+                        <i class='fas fa-long-arrow-alt-down flecha'(click)='emailDescendente()' id="emz"></i>
+                    </th>
+                    <th>
+                        Red
+                        <i class='fas fa-long-arrow-alt-up flecha ' (click)='ministerioAscendente()' id="ma"></i>
+                        <i class='fas fa-long-arrow-alt-down flecha' (click)='ministerioDescendente()' id="mz"></i>
+                    </th>
+                    <th>
+                        Grupo
+                        <i class='fas fa-long-arrow-alt-up flecha'(click)='grupoAscendente()' id="ga"></i>
+                        <i class='fas fa-long-arrow-alt-down flecha' (click)='grupoDescendente()' id="gz"></i>
+                    </th>
                     <th>Accion</th>
                 </tr>
             </thead>

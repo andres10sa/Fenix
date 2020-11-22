@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {Router} from '@angular/router';
-import { abort } from 'process';
+
+
 
 
 @Component({
@@ -15,7 +16,7 @@ export class CrearadminComponent implements OnInit {
   public correos:String[];//Listado con los correos existentes en DB
   public crear:boolean;//Indica si la acción es post o put
   public id:string;//El id del usuario que se va a editar
-  public incompletos:boolean;//Verificia si todos los campos están llenos
+  public incompletos:boolean;//Verifica si todos los campos están llenos
   public contra:boolean;//Verifica si las contraseñas son iguales
   public email:boolean;//Verifica si el correo es valido
   public existe:boolean;//Verifica si el usuario existe
@@ -31,7 +32,7 @@ export class CrearadminComponent implements OnInit {
     this.existe=false;
   
   }
-
+  
   ngOnInit(): void {
     this.obtenerAdmins();
     this.ruta();
@@ -78,7 +79,8 @@ export class CrearadminComponent implements OnInit {
             let apellidos=ele['apellidos'].toLowerCase();
             let grupo=ele['grupo'].toLowerCase();
             let correo=ele['correo'].toLowerCase();
-            if(nombres.includes(this.busqueda) || apellidos.includes(this.busqueda) || grupo.includes(this.busqueda) || correo.includes(this.busqueda)){
+            let termino=this.busqueda.toLowerCase();
+            if(nombres.includes(termino) || apellidos.includes(termino) || grupo.includes(termino) || correo.includes(termino)){
               actual.push(ele);
           }
         });
@@ -145,7 +147,6 @@ export class CrearadminComponent implements OnInit {
     if(password2 !==password){
       this.incompletos=false;
      return this.contra=true;
-   
     }
     this.contra=false;
     if (!emailRegex.test(correo)) {
@@ -302,5 +303,6 @@ export class CrearadminComponent implements OnInit {
     this.activarFlecha('eZ');
     this.desactivarFlechas('nA','nZ','aA','aZ','gA','gZ','eA');
   }
- 
+  
+
 }
