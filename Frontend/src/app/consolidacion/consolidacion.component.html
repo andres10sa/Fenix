@@ -8,7 +8,8 @@
       <div class="busqueda">
         <div class="botones">
           <i class="fas fa-file-excel"></i>
-          <i (click)="generarPDFCons()" class="fas fa-file-pdf"></i>
+          <!-- <i (click)="generarPDFCons()" class="fas fa-file-pdf"></i> -->
+          <i (click)="generarPDFCons()" class="fas fa-file-pdf"></i> 
           <i class="fas fa-print"></i>
         </div>
 
@@ -31,7 +32,7 @@
         </div>
       </div>
 
-      <table style="width: 30%" id="t-consolidacion">
+      <table id="t-consolidacion">
         <thead>
           <tr>
             <th>
@@ -123,7 +124,7 @@
           <tr *ngFor="let feligres of feligreses">
             <td>{{ feligres.nombres }}</td>
             <td>{{ feligres.apellidos }}</td>
-            <td>cc</td>
+            <td> {{feligres.doc}}</td> 
             <td>{{ feligres.documento }}</td>
             <td>{{ feligres.genero }}</td>
             <td>{{ feligres.edad }}</td>
@@ -173,12 +174,12 @@
     <label>Apellidos</label>
   </div>
   <div class="grupo-formulario">
-    <select>
+    <select name='doc' [(ngModel)]="datosFeligres.doc">
       <option value="">Tipo de documento</option>
-      <option value="ti">Tarjeta de identidad</option>
-      <option value="cc">Cédula de ciudadania</option>
-      <option value="ce">Cédula extranjera</option>
-      <option value="otra">Otra</option>
+      <option value="TI">Tarjeta de identidad</option>
+      <option value="CC">Cédula de ciudadania</option>
+      <option value="CE">Cédula extranjera</option>
+      <option value="N/A">Otra</option>
     </select>
   </div>
   <div class="grupo-formulario">

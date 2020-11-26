@@ -45,7 +45,9 @@ export class ConsolidacionComponent implements OnInit {
     celular:'',
     correo:'',
     grupo:'',
-    ministerio:''
+    ministerio:'',
+    doc:''
+
   }
 
   agregarFeligres(){
@@ -60,13 +62,20 @@ export class ConsolidacionComponent implements OnInit {
       celular:'',
       correo:'',
       grupo:'',
-      ministerio:''
+      ministerio:'',
+      doc:''
     }
     this.crear=true;
   }
   ocultarFormulario(){
     document.getElementById('consolidacion').style.top='-700px';
     document.getElementById('main').style.background='#fff';
+    setTimeout(() => {
+      this.incompletos=false;
+      this.email=false;
+      this.existe=false;
+    }, 1000);
+    
    
 
   }
@@ -174,8 +183,10 @@ export class ConsolidacionComponent implements OnInit {
       celular:'',
       correo:'',
       grupo:'',
-      ministerio:''
+      ministerio:'',
+      doc:''
     }
+   
   }
 
   //postear feligres
@@ -183,9 +194,10 @@ export class ConsolidacionComponent implements OnInit {
     e.preventDefault();
     const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
     const {nombres,apellidos,documento,genero,edad,celular,correo,grupo,ministerio} = this.datosFeligres;
-    if(!nombres || !apellidos || !documento || !genero || !edad || !celular || !correo || !grupo || !ministerio){
+    if(!nombres || !apellidos || !documento || !genero || !edad || !celular || !correo || !grupo || !ministerio || !this.datosFeligres.doc){
       return this.incompletos=true;
     }
+    this.incompletos=false;
     if (!emailRegex.test(correo)) {
       return this.email=true;
     }

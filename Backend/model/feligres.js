@@ -14,11 +14,13 @@ const esquemaFeligres = new mongoose.Schema({
   celular:String,
   correo:String,
   grupo:String,
+  doc:String,
   ministerio:String,
   registro:{
       type:Date,
       default:Date.now()
-  }
+  },
+  
 
 });
 
