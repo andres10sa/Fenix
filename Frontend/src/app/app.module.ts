@@ -20,6 +20,8 @@ import { PlanesComponent } from './home/planes/planes.component';
 import { ContactanosComponent } from './home/contactanos/contactanos.component';
 import {AuthGuard} from './guard/auth.guard';
 import {TokenInterceptorService} from './service/token-interceptor.service';
+import { ChartService } from './service/chart.service';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -44,9 +46,10 @@ import {TokenInterceptorService} from './service/token-interceptor.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ChartsModule
   ],
-  providers: [AuthService,AuthGuard,{
+  providers: [ChartService,AuthService,AuthGuard,{
     provide:HTTP_INTERCEPTORS,
     useClass:TokenInterceptorService,
     multi:true
