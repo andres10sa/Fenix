@@ -11,7 +11,7 @@ export class AuthService {
   private adminUrl = `http://localhost:3000/api/usuario/`;//crear admin
   private loginUrl = `http://localhost:3000/api/auth/`;//ingresar
   private feligresUrl = `http://localhost:3000/api/feligres/`;//crear feligres
- 
+  private aportesUrl = `http://localhost:3000/api/aportes/`;//aportes-->
    
   constructor(private http:HttpClient,private router:Router) { }
 
@@ -60,5 +60,18 @@ export class AuthService {
   }
   obtenerRol(){
     return localStorage['rol']
+  }
+
+  crearAportes(aportes){
+    return this.http.post<any>(this.aportesUrl,aportes)
+  }
+  obtenerAportes(){
+    return this.http.get<any>(this.aportesUrl)
+  }
+  eliminarAportes(id){
+    return this.http.delete<any>(this.aportesUrl+id)
+  }
+  editarAportes(id,admin){
+    return this.http.put<any>(this.aportesUrl+id,admin);
   }
 }

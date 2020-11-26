@@ -1,8 +1,33 @@
-<main id="mainaportes">
+<main id="mainAportes">
     <app-aside></app-aside>
     <section>
         <h4 class="titulo">APORTES</h4>
         <p class="crecimiento">Módulo Aportes.</p>
+
+
+        <div class="top-charts" style="display: flex">
+            <canvas baseChart
+                [data]="pieChartData"
+                [labels]="pieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [colors]="pieChartColors"
+                [legend]="pieChartLegend">
+            </canvas>
+
+            <canvas baseChart
+            [data]="barChartData"
+            [labels]="barChartLabels"
+            [chartType]="barChartType"
+            [options]="pieChartOptions"
+            [plugins]="pieChartPlugins"
+            [colors]="barChartColors"
+            [legend]="barChartLegend">
+        </canvas>
+        </div>
+
+
 
         <div class="tabla">
             <div class="busqueda">
@@ -18,7 +43,7 @@
                         <input class="bu" type="text" placeholder="Buscar">
                     </div>
 
-                    <button class="nuevo-feligres" (click)='crearAporte()'>
+                    <button class="nuevo-feligres" (click)='agregarAportes()'>
                         <i class="fas fa-user-plus"></i>
                         Nuevo Aporte
                     </button>
@@ -33,28 +58,37 @@
                     <tr>
                         <th>Fecha</th>
                         <th>Identificación</th>
-                        <th>Nombre</th>
+                        <th>Nombres</th>
+                        <th>apellidos</th>
                         <th>Clase</th>
-                        <th>Tipo</th>
                         <th>Fondo</th>
-                        <th>Cantidad</th>
+                        <th>CantidadAporte</th>
+                        <th>valorAporte</th>
+                        <th>idAportes</th>
+                        <th>TipoAporte</th>                       
+                        <th>TotalAporte</th>  
                         <th>Acción</th>
 
                     </tr>
                 </thead>
                 <tbody>
 
-                    <tr>
-                        <td>23-10-2013</td>
-                        <td>1070975932</td>
-                        <td>Andrés Sánchez</td>
-                        <td>Ofrenda</td>
-                        <td>Monetario</td>
-                        <td>General</td>
-                        <td>$ 995.000</td>
+                    <tr *ngFor='let aportes of aportes'>
+
+                        <td>{{aportes.fecha}}</td>
+                        <td>{{aportes.documento}}</td>
+                        <td>{{aportes.nombres}}</td>
+                        <td>{{aportes.apellidos}}</td>
+                        <td>{{aportes.clase}}</td>
+                        <td>{{aportes.fondo}}</td>
+                        <td>{{aportes.cantidadAporte}}</td>
+                        <td>{{aportes.valorAporte}}</td>
+                        <td>{{aportes.idAportes}}</td>
+                        <td>{{aportes.tipoAporte}}</td>
+                        <td>{{aportes.totalAporte}}</td>
                         <td>
-                            <i class="fas fa-trash icono-accion eliminar"></i>
-                            <i class="fas fa-pencil-alt icono-accion"></i>
+                            <i class="fas fa-trash icono-accion eliminar" (click)='eliminarAportes(aportes._id)'></i>
+                            <i class="fas fa-pencil-alt icono-accion" (click)='guardarDatosAportes(aportes._id,aportes)'></i>
                         </td>
                     </tr>
                 </tbody>
@@ -70,49 +104,75 @@
 
 
 
-<form class="formulario-consolidacion" id="aportes">
+<form #heroForm='ngForm' class="formulario-consolidacion" id="aportes">
 
     <div class="titulo-formulario">
-        <p>Agregar Aporte</p>
-        <span (click)='cerrarAportes()'>x</span>
+        <p>{{crear ? 'Agregar':'Editar'}} Aportes</p>
+        <span (click)='ocultarFormulario()'>x</span>
     </div>
 
 
     <div class="grupo-formulario">
-     
-        <input required type="date">
+        <input [(ngModel)]='datosAportes.fecha' name='fecha' required type="date">     
+        <label>Fecha</label>
     </div>
   
     <div class="grupo-formulario">
-        <input required type="text">
-        <label>Identificación</label>
-
+        <input [(ngModel)]='datosAportes.documento' maxlength="10" name='documento' required type="text">
+        <label>Cédula</label>    
     </div>
 
     <div class="grupo-formulario">
-        <input required type="text">
-        <label>Nombre</label>
-
+        <input [(ngModel)]='datosAportes.nombres' name='nombres' required type="text">
+        <label>Nombres</label>     
     </div>
 
     <div class="grupo-formulario">
-        <input required type="text">
-        <label>Clase</label>
+        <input [(ngModel)]='datosAportes.apellidos' name='apellidos' required type="text">
+        <label>Apellidos</label>     
+    </div>
 
-    </div>
     <div class="grupo-formulario">
-        <input required type="text">
-        <label>Tipo</label>
+        <input [(ngModel)]='datosAportes.clase' name='clase' required type="text">
+        <label>clase</label>     
     </div>
+
     <div class="grupo-formulario">
-        <input required type="text">
-        <label>Fondo</label>
+        <input [(ngModel)]='datosAportes.fondo' name='fondo' required type="text">
+        <label>fondo</label>     
     </div>
+
     <div class="grupo-formulario">
-        <input required type="number">
-        <label>Cantidad</label>
+        <input [(ngModel)]='datosAportes.cantidadAporte'  name='cantidadAporte' required type="number">
+        <label>cantidadAporte</label>
     </div>
-    <button class="btn-agregar">Agregar</button>
+
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosAportes.valorAporte'  name='valorAporte' required type="number">
+        <label>valorAporte</label>
+    </div>
+
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosAportes.tipoAporte' name='tipoAporte' required type="text">
+        <label>tipoAporte</label>     
+    </div>
+
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosAportes.idAportes' name='idAportes' required type="text">
+        <label>idAportes</label>     
+    </div>
+
+    <div class="grupo-formulario">
+        <input [(ngModel)]='datosAportes.totalAporte'  name='totalAporte' required type="number">
+        <label>totalAporte</label>
+    </div>
+
+    <div *ngIf='incompletos' class="error-contraseña" >Todos los campos son obligatorios</div>
+    <div *ngIf='idAportess' class="error-contraseña" >idAportes invalido</div>
+    <div *ngIf='existe' class="error-contraseña" >Ya hay un usuario registrado con este Documento</div>
+
+    <button *ngIf='crear' class="btn-agregar" (click)='postearAportes($event)'>Agregar</button>
+    <button *ngIf='!crear' class="btn-agregar" (click)='editarAportes($event)'>Guardar</button>
 
 
 </form>
