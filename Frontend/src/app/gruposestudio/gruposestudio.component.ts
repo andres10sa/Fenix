@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {Router} from '@angular/router';
+import  {jsPDF} from 'jspdf'
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-gruposestudio',
@@ -88,6 +90,32 @@ export class GruposestudioComponent implements OnInit {
       (err)=>console.log(err)
     )
   }
-  
+  generarPDFge() {
+    // Extraemos el
+    const tablaGrupoEstudio = document.getElementById('grupoEstudio');
+
+    const pdfGE = new jsPDF('p', 'pt', 'a4');
+
+    const options = {
+      background: 'white',
+      scale: 2
+    };
+    html2canvas(tablaGrupoEstudio, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 15;
+      const bufferY = 150;
+      const imgProps = (pdfGE as any).getImageProperties(img);
+      const pdfWidth = pdfGE.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdfGE.text("Grupos de estudio",10,15);
+      pdfGE.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return pdfGE;
+    }).then((pdfGEResult) => {
+      pdfGEResult.save(`${new Date().toISOString()}_GrupoEstudio.pdf`);
+    });
+  }
 
 }

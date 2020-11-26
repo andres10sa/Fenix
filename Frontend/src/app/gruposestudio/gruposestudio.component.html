@@ -1,138 +1,138 @@
 <main>
-    <app-aside></app-aside>
+  <app-aside></app-aside>
 
-    <section>
-        <h4 class="titulo">GRUPOS DE ESTUDIO</h4>
-        <p class="crecimiento">Crecimiento espiritual.</p>
-        <div class="grupos">
+  <section>
+    <h4 class="titulo">GRUPOS DE ESTUDIO</h4>
+    <p class="crecimiento">Crecimiento espiritual.</p>
+    <div class="grupos">
+      <div
+        class="grupo"
+        *ngIf="
+          auth.obtenerRol() === 'admin' ||
+          auth.obtenerRol() === 'Escuela de siervos'
+        "
+      >
+        <img src="../../assets/img/siervos.png" alt="escuela-siervos" />
+        <h3>ESCUELA DE SIERVOS</h3>
+        <button (click)="registrosSiervo()">Ver Más..</button>
+      </div>
 
-            <div class="grupo" *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Escuela de siervos"'>
-                <img src="../../assets/img/siervos.png" alt="escuela-siervos">
-                 <h3>ESCUELA DE SIERVOS</h3>
-                 <button (click)='registrosSiervo()'>Ver Más..</button>
-            </div>
+      <div
+        class="grupo"
+        *ngIf="
+          auth.obtenerRol() === 'admin' || auth.obtenerRol() === 'Restauración'
+        "
+      >
+        <img src="../../assets/img/restauracion.png" alt="escuela-siervos" />
+        <h3>CASAS DE RESTAURACIÓN</h3>
+        <button (click)="registrosRestauracion()">Ver Más..</button>
+      </div>
 
-            <div class="grupo" *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Restauración"'>
-                <img src="../../assets/img/restauracion.png" alt="escuela-siervos">
-                 <h3>CASAS DE RESTAURACIÓN</h3>
-                 <button (click)='registrosRestauracion()' >Ver Más..</button>
-            </div>
+      <div
+        class="grupo"
+        *ngIf="auth.obtenerRol() === 'admin' || auth.obtenerRol() === 'Celulas'"
+      >
+        <img src="../../assets/img/celulas.png" alt="escuela-siervos" />
+        <h3>CELULAS</h3>
+        <button (click)="registrosCelulas()">Ver Más..</button>
+      </div>
 
-            <div class="grupo" *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Celulas"'>
-                <img src="../../assets/img/celulas.png" alt="escuela-siervos">
-                 <h3>CELULAS</h3>
-                 <button (click)='registrosCelulas()'>Ver Más..</button>
-            </div>
-
-            <div class="grupo" *ngIf='auth.obtenerRol()==="admin" || auth.obtenerRol()==="Dominical"'>
-                <img src="../../assets/img/dominical.jpg" alt="escuela-siervos">
-                 <h3>ESCUELA DOMINICAL</h3>
-                 <button (click)='registrosDominical()'>Ver Más..</button>
-            </div>
-            
-        </div>
-      
-    </section>
+      <div
+        class="grupo"
+        *ngIf="
+          auth.obtenerRol() === 'admin' || auth.obtenerRol() === 'Dominical'
+        "
+      >
+        <img src="../../assets/img/dominical.jpg" alt="escuela-siervos" />
+        <h3>ESCUELA DOMINICAL</h3>
+        <button (click)="registrosDominical()">Ver Más..</button>
+      </div>
+    </div>
+  </section>
 </main>
 
-
-
 <div class="general-grupos" id="registros">
-
-    
-    <div class="tabla">
-        
+  <div class="tabla">
     <div class="titulo-registro">
-     {{titulo}}
+      {{ titulo }}
     </div>
-          <div class="padd">
-        <div class="busqueda">
-            <div class="botones">
-                <i class="fas fa-file-excel"></i>
-                <i class="fas fa-file-pdf"></i>
-                <i class="fas fa-print"></i>
-            </div>
-            
-            <div class="padre">
-                <div class="padre-input">
-                    <i class="fas fa-search"></i>
-                    <input class="bu" type="text" placeholder="Buscar">
-                </div>
-                
-                <!-- <button class="nuevo-feligres" >
+    <div class="padd">
+      <div class="busqueda">
+        <div class="botones">
+          <i class="fas fa-file-excel"></i>
+          <i (click)="generarPDFge()" class="fas fa-file-pdf"></i>
+          <i class="fas fa-print"></i>
+        </div>
+
+        <div class="padre">
+          <div class="padre-input">
+            <i class="fas fa-search"></i>
+            <input class="bu" type="text" placeholder="Buscar" />
+          </div>
+
+          <!-- <button class="nuevo-feligres" >
                     <i class="fas fa-user-plus"></i>
                     Nuevo Feligres
                 </button> -->
-               
-            </div>
-           
-          
-        </div> 
-      
-        
-        <table>
-    
+        </div>
+      </div>
+
+      <table id="grupoEstudio">
         <thead>
-            <tr >
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>N° Documento</th>
-                <th>Celular</th>
-                <th>Registro</th>
-            </tr>
+          <tr>
+            <th>Grupo de Estudio</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>N° Documento</th>
+            <th>Celular</th>
+            <th>Registro</th>
+          </tr>
         </thead>
 
-<tbody *ngIf='cel'>
-    <tr *ngFor='let celula of celulas'>
-        <td>{{celula.nombres}}</td>
-        <td>{{celula.apellidos}}</td>
-        <td>{{celula.documento}}</td>
-        <td>{{celula.celular}}</td>
-        <td>{{celula.registro.slice(0,10)}}</td>
-      
-    
-    </tr>
-</tbody>
-<tbody *ngIf='sie'>
-    <tr  *ngFor='let siervo of siervos'>
-        <td>{{siervo.nombres}}</td>
-        <td>{{siervo.apellidos}}</td>
-        <td>{{siervo.documento}}</td>
-        <td>{{siervo.celular}}</td>
-        <td>{{siervo.registro.slice(0,10)}}</td>
-      
-    </tr>
-</tbody>
-<tbody *ngIf='res'>
-    <tr  *ngFor='let resta of restauracion'>
-        <td>{{resta.nombres}}</td>
-        <td>{{resta.apellidos}}</td>
-        <td>{{resta.documento}}</td>
-        <td>{{resta.celular}}</td>
-        <td>{{resta.registro.slice(0,10)}}</td>
-    
-    </tr>
-</tbody>
-<tbody *ngIf='dom'>
-    <tr  *ngFor='let domi of dominical'>
-        <td>{{domi.nombres}}</td>
-        <td>{{domi.apellidos}}</td>
-        <td>{{domi.documento}}</td>
-        <td>{{domi.celular}}</td>
-        <td>{{domi.registro.slice(0,10)}}</td>
-      
-    </tr>
-</tbody>
-    
-
-
-       
-    </table>  
-    <div class="padrebtn">
-        <button class="btn-cerrar" (click)='ocultarRegistros()'>Cerrar</button>
+        <tbody *ngIf="cel">
+          <tr *ngFor="let celula of celulas">
+            <td>{{ celula.grupo }}</td>
+            <td>{{ celula.nombres }}</td>
+            <td>{{ celula.apellidos }}</td>
+            <td>{{ celula.documento }}</td>
+            <td>{{ celula.celular }}</td>
+            <td>{{ celula.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="sie">
+          <tr *ngFor="let siervo of siervos">
+            <td>{{ siervo.grupo }}</td>
+            <td>{{ siervo.nombres }}</td>
+            <td>{{ siervo.apellidos }}</td>
+            <td>{{ siervo.documento }}</td>
+            <td>{{ siervo.celular }}</td>
+            <td>{{ siervo.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="res">
+          <tr *ngFor="let resta of restauracion">
+            <td>{{ resta.grupo }}</td>
+            <td>{{ resta.nombres }}</td>
+            <td>{{ resta.apellidos }}</td>
+            <td>{{ resta.documento }}</td>
+            <td>{{ resta.celular }}</td>
+            <td>{{ resta.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="dom">
+          <tr *ngFor="let domi of dominical">
+            <td>{{ domi.grupo }}</td>
+            <td>{{ domi.nombres }}</td>
+            <td>{{ domi.apellidos }}</td>
+            <td>{{ domi.documento }}</td>
+            <td>{{ domi.celular }}</td>
+            <td>{{ domi.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="padrebtn">
+        <button class="btn-cerrar" (click)="ocultarRegistros()">Cerrar</button>
+      </div>
     </div>
-</div>
-    </div>
-   
-
+  </div>
 </div>

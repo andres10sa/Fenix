@@ -1,168 +1,154 @@
 <main>
-    <app-aside></app-aside>
-    <section>
-        <h4 class="titulo">MINISTERIOS</h4>
-        <p class="crecimiento">Módulo Ministerios.</p>
+  <app-aside></app-aside>
+  <section>
+    <h4 class="titulo">MINISTERIOS</h4>
+    <p class="crecimiento">Módulo Ministerios.</p>
 
-        <div class="grupos">
-            <div class="grupo">
-                <img src="../../assets/img/alabanza.png" alt="escuela-siervos">
-                 <h3>Alabanza</h3>
-                 <div class="sombra" (click)='alabanza()'>Ver miembros</div>
-            
-            </div>
+    <div class="grupos">
+      <div class="grupo">
+        <img src="../../assets/img/alabanza.png" alt="escuela-siervos" />
+        <h3>Alabanza</h3>
+        <div class="sombra" (click)="alabanza()">Ver miembros</div>
+      </div>
 
-            <div class="grupo">
-                <img src="../../assets/img/ujieres.jpg" alt="escuela-siervos">
-                 <h3>Ujieres</h3>
-                 <div class="sombra" (click)='ujieres()'>Ver miembros</div>
-                 
-            </div>
+      <div class="grupo">
+        <img src="../../assets/img/ujieres.jpg" alt="escuela-siervos" />
+        <h3>Ujieres</h3>
+        <div class="sombra" (click)="ujieres()">Ver miembros</div>
+      </div>
 
-            <div class="grupo">
-                <img src="../../assets/img/audiovisuales.png" alt="escuela-siervos">
-                 <h3>Audiovisuales</h3>
-                 <div class="sombra" (click)='audiovisuales()'>Ver miembros</div>
-                 
-            </div>
+      <div class="grupo">
+        <img src="../../assets/img/audiovisuales.png" alt="escuela-siervos" />
+        <h3>Audiovisuales</h3>
+        <div class="sombra" (click)="audiovisuales()">Ver miembros</div>
+      </div>
 
-            <div class="grupo">
-                <img src="../../assets/img/intercesion.jpg" alt="escuela-siervos">
-                 <h3>Intercesión</h3>
-                 <div class="sombra" (click)='intercesion()'>Ver miembros</div>
-                 
-            </div>
-            <div class="grupo">
-                <img src="../../assets/img/jovenes.jpg" alt="escuela-siervos">
-                 <h3>Juvenil</h3>
-                 
-                 <div class="sombra" (click)='juvenil()'>Ver miembros</div>
-            </div>
-            <div class="grupo">
-                <img src="../../assets/img/infantil.jpg" alt="escuela-siervos">
-                 <h3>Infantil</h3>
-                 <div class="sombra" (click)='infantil()'>Ver miembros</div>
-                 
-            </div>
-           
+      <div class="grupo">
+        <img src="../../assets/img/intercesion.jpg" alt="escuela-siervos" />
+        <h3>Intercesión</h3>
+        <div class="sombra" (click)="intercesion()">Ver miembros</div>
+      </div>
+      <div class="grupo">
+        <img src="../../assets/img/jovenes.jpg" alt="escuela-siervos" />
+        <h3>Juvenil</h3>
 
-        </div>
-    </section>
+        <div class="sombra" (click)="juvenil()">Ver miembros</div>
+      </div>
+      <div class="grupo">
+        <img src="../../assets/img/infantil.jpg" alt="escuela-siervos" />
+        <h3>Infantil</h3>
+        <div class="sombra" (click)="infantil()">Ver miembros</div>
+      </div>
+    </div>
+  </section>
 </main>
 
-
-
-
-
-
 <div class="general-grupos" id="ministerios">
-
-    
-    <div class="tabla">
-        
+  <div class="tabla">
     <div class="titulo-registro">
-    {{titulo}}
+      {{ titulo }}
     </div>
-          <div class="padd">
-        <div class="busqueda">
-            <div class="botones">
-                <i class="fas fa-file-excel"></i>
-                <i class="fas fa-file-pdf"></i>
-                <i class="fas fa-print"></i>
-            </div>
-            
-            <div class="padre">
-                <div class="padre-input">
-                    <i class="fas fa-search"></i>
-                    <input class="bu" type="text" placeholder="Buscar">
-                </div>
-                
-                <!-- <button class="nuevo-feligres" >
+    <div class="padd">
+      <div class="busqueda">
+        <div class="botones">
+          <i class="fas fa-file-excel"></i>
+          <i (click)="generarPDFMinisterio()" class="fas fa-file-pdf"></i>
+          <i class="fas fa-print"></i>
+        </div>
+
+        <div class="padre">
+          <div class="padre-input">
+            <i class="fas fa-search"></i>
+            <input class="bu" type="text" placeholder="Buscar" />
+          </div>
+
+          <!-- <button class="nuevo-feligres" >
                     <i class="fas fa-user-plus"></i>
                     Nuevo Feligres
                 </button> -->
-               
-            </div>
-        </div> 
-        <table>
-    
+        </div>
+      </div>
+      <table id="t-ministerios">
         <thead>
-            <tr>
-                <th>Nombres</th>
-                <th>Apellidos</th>
-                <th>N° Documento</th>
-                <th>Celular</th>
-                <th>Registro</th>
-            </tr>
+          <tr>
+            <th>Ministerio</th>
+            <th>Nombres</th>
+            <th>Apellidos</th>
+            <th>N° Documento</th>
+            <th>Celular</th>
+            <th>Registro</th>
+          </tr>
         </thead>
 
-<tbody *ngIf='ala'>
-    <tr *ngFor='let ala of alaban'>
-        <td>{{ala.nombres}}</td>
-        <td>{{ala.apellidos}}</td>
-        <td>{{ala.documento}}</td>
-        <td>{{ala.celular}}</td>
-        <td>{{ala.registro.slice(0,10)}}</td>
-    </tr>
-</tbody>
+        <tbody *ngIf="ala">
+          <tr *ngFor="let ala of alaban">
+            <td>{{ ala.ministerio }}</td>
+            <td>{{ ala.nombres }}</td>
+            <td>{{ ala.apellidos }}</td>
+            <td>{{ ala.documento }}</td>
+            <td>{{ ala.celular }}</td>
+            <td>{{ ala.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
 
-<tbody *ngIf='uji'>
-    <tr *ngFor='let ujie of ujier'>
-        <td>{{ujie.nombres}}</td>
-        <td>{{ujie.apellidos}}</td>
-        <td>{{ujie.documento}}</td>
-        <td>{{ujie.celular}}</td>
-        <td>{{ujie.registro.slice(0,10)}}</td>
-    </tr>
-</tbody>
+        <tbody *ngIf="uji">
+          <tr *ngFor="let ujie of ujier">
+            <td>{{ ujie.ministerio }}</td>
+            <td>{{ ujie.nombres }}</td>
+            <td>{{ ujie.apellidos }}</td>
+            <td>{{ ujie.documento }}</td>
+            <td>{{ ujie.celular }}</td>
+            <td>{{ ujie.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
 
-<tbody *ngIf='aud'>
-    <tr *ngFor='let audi of audio'>
-        <td>{{audi.nombres}}</td>
-        <td>{{audi.apellidos}}</td>
-        <td>{{audi.documento}}</td>
-        <td>{{audi.celular}}</td>
-        <td>{{audi.registro.slice(0,10)}}</td>
-    </tr>
-</tbody>
+        <tbody *ngIf="aud">
+          <tr *ngFor="let audi of audio">
+            <td>{{ audi.ministerio }}</td>
+            <td>{{ audi.nombres }}</td>
+            <td>{{ audi.apellidos }}</td>
+            <td>{{ audi.documento }}</td>
+            <td>{{ audi.celular }}</td>
+            <td>{{ audi.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
 
-<tbody *ngIf='int'>
-    <tr *ngFor='let inte of inter'>
-        <td>{{inte.nombres}}</td>
-        <td>{{inte.apellidos}}</td>
-        <td>{{inte.documento}}</td>
-        <td>{{inte.celular}}</td>
-        <td>{{inte.registro.slice(0,10)}}</td>
-    </tr>
-</tbody>
+        <tbody *ngIf="int">
+          <tr *ngFor="let inte of inter">
+            <td>{{ inte.ministerio }}</td>
+            <td>{{ inte.nombres }}</td>
+            <td>{{ inte.apellidos }}</td>
+            <td>{{ inte.documento }}</td>
+            <td>{{ inte.celular }}</td>
+            <td>{{ inte.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
 
-<tbody *ngIf='juv'>
-    <tr *ngFor='let ju of juve'>
-        <td>{{ju.nombres}}</td>
-        <td>{{ju.apellidos}}</td>
-        <td>{{ju.documento}}</td>
-        <td>{{ju.celular}}</td>
-        <td>{{ju.registro.slice(0,10)}}</td>
-    </tr>
-</tbody>
+        <tbody *ngIf="juv">
+          <tr *ngFor="let ju of juve">
+            <td>{{ ju.ministerio }}</td>
+            <td>{{ ju.nombres }}</td>
+            <td>{{ ju.apellidos }}</td>
+            <td>{{ ju.documento }}</td>
+            <td>{{ ju.celular }}</td>
+            <td>{{ ju.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
 
-<tbody *ngIf='inf'>
-    <tr *ngFor='let in of infa'>
-        <td>{{in.nombres}}</td>
-        <td>{{in.apellidos}}</td>
-        <td>{{in.documento}}</td>
-        <td>{{in.celular}}</td>
-        <td>{{in.registro.slice(0,10)}}</td>
-    </tr>
-</tbody>
-
-
-    </table>  
-    <div class="padrebtn">
-        <button class="btn-cerrar" (click)='cerrar()'>Cerrar</button>
+        <tbody *ngIf="inf">
+          <tr *ngFor="let in of infa">
+            <td>{{ in.ministerio }}</td>
+            <td>{{ in.nombres }}</td>
+            <td>{{ in.apellidos }}</td>
+            <td>{{ in.documento }}</td>
+            <td>{{ in.celular }}</td>
+            <td>{{ in.registro.slice(0, 10) }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="padrebtn">
+        <button class="btn-cerrar" (click)="cerrar()">Cerrar</button>
+      </div>
     </div>
-</div>
-    </div>
-   
-
+  </div>
 </div>

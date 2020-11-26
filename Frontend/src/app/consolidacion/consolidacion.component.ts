@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../service/auth.service';
 import {Router} from '@angular/router';
+import  {jsPDF} from 'jspdf'
+import html2canvas from 'html2canvas';
+
+
 
 @Component({
   selector: 'app-consolidacion',
@@ -140,7 +144,7 @@ export class ConsolidacionComponent implements OnInit {
 
   editarFeligres(e){
     e.preventDefault();
-    const emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+    const emailRegex = /^[-\w.%+]{1,125}@(?:[A-Z0-9-]{1,125}\.){1,125}[A-Z]{2,130}$/i;
     const {nombres,apellidos,documento,genero,edad,celular,correo,grupo,ministerio} = this.datosFeligres;
     if(!nombres || !apellidos || !documento || !genero || !edad || !celular || !correo || !grupo || !ministerio){
       return this.incompletos=true;
@@ -289,6 +293,32 @@ export class ConsolidacionComponent implements OnInit {
      document.getElementById(l).style.color='#ccc';
   }
 
+  generarPDFCons() {
+    // Extraemos el
+    const tablaConsolidacion = document.getElementById('t-consolidacion');
+    const doc = new jsPDF('l', 'pt', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(tablaConsolidacion, options).then((canvas) => {
 
+      const img = canvas.toDataURL('image/PNG');
 
+      // Add image Canvas to PDF
+      const bufferX = 200;
+      const bufferY = 100;
+      const imgProps = (doc as any).getImageProperties(img);
+      const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      doc.text("Feligreses",10,15);
+      doc.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return doc;
+    }).then((docResult) => {
+      docResult.save(`${new Date().toISOString()}_consolidacion.pdf`);
+    });
+  }
+    
+  
 }
+
