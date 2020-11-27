@@ -48,6 +48,8 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     ReactiveFormsModule,
     ChartsModule
+    
+    
   ],
   providers: [ChartService,AuthService,AuthGuard,{
     provide:HTTP_INTERCEPTORS,

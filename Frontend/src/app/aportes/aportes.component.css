@@ -10,7 +10,12 @@ main{
     color: #FFF;
     padding: 20px 40px;
 } 
-
+.top-charts{
+   width: 35%;
+   height: 35%;
+   
+   border-bottom: 1px;
+ }
 app-aside>.logo{
     margin-top: 60px;
   width: 200px;
