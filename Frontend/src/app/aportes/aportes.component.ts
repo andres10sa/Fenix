@@ -271,9 +271,9 @@ export class AportesComponent implements OnInit {
 
       // Add image Canvas to PDF
       const bufferX = 30;
-      const bufferY = 1;
+      const bufferY = (-50);
       const imgProps = (pdfAportes as any).getImageProperties(img);
-      const pdfWidth = pdfAportes.internal.pageSize.getWidth() - 4 * bufferX;
+      const pdfWidth = pdfAportes.internal.pageSize.getWidth() - 2 * bufferX;
       const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
       pdfAportes.text("Aportes",10,15);
       pdfAportes.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');

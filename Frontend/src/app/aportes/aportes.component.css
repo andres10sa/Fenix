@@ -13,7 +13,7 @@ main{
 .top-charts{
    width: 35%;
    height: 35%;
-   padding: 5px 18px;
+   
    border-bottom: 1px;
  }
 app-aside>.logo{
@@ -138,10 +138,10 @@ tr,th,td{
 
 }
 
-/* tbody{
+tbody{
    border-radius: 40px;
    overflow: hidden;
-} */
+}
 
 th,td{
  padding: 6px 20px;
