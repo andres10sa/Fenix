@@ -9,7 +9,7 @@
         <div class="botones">
           <i class="fas fa-file-excel"></i>
           <!-- <i (click)="generarPDFCons()" class="fas fa-file-pdf"></i> -->
-          <i (click)="generarPDFCons()" class="fas fa-file-pdf"></i> 
+          <i (click)="generarPDFCons()" class="fas fa-file-pdf"></i>
           <i class="fas fa-print"></i>
         </div>
 
@@ -124,7 +124,7 @@
           <tr *ngFor="let feligres of feligreses">
             <td>{{ feligres.nombres }}</td>
             <td>{{ feligres.apellidos }}</td>
-            <td> {{feligres.doc}}</td> 
+            <td>{{ feligres.doc }}</td>
             <td>{{ feligres.documento }}</td>
             <td>{{ feligres.genero }}</td>
             <td>{{ feligres.edad }}</td>
@@ -174,7 +174,7 @@
     <label>Apellidos</label>
   </div>
   <div class="grupo-formulario">
-    <select name='doc' [(ngModel)]="datosFeligres.doc">
+    <select name="doc" [(ngModel)]="datosFeligres.doc">
       <option value="">Tipo de documento</option>
       <option value="TI">Tarjeta de identidad</option>
       <option value="CC">Cédula de ciudadania</option>

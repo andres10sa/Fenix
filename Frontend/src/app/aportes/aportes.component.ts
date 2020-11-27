@@ -8,6 +8,8 @@ import { Label,Color, BaseChartDirective,  } from 'ng2-charts';
 import { ChartService } from '../service/chart.service';
 import { aportes } from '../aportes';
 import { Chart } from '../chart';
+import  {jsPDF} from 'jspdf'
+import html2canvas from 'html2canvas';
 
 
 @Component({
@@ -255,5 +257,30 @@ export class AportesComponent implements OnInit {
 
   }
 
+  generarPDFAportes() {
+    // Extraemos el
+    const tablaAportes = document.getElementById('t-aportes');
+    const pdfAportes = new jsPDF('l', 'mm', 'a4');
+    const options = {
+      background: 'white',
+      scale: 3
+    };
+    html2canvas(tablaAportes, options).then((canvas) => {
+
+      const img = canvas.toDataURL('image/PNG');
+
+      // Add image Canvas to PDF
+      const bufferX = 30;
+      const bufferY = 1;
+      const imgProps = (pdfAportes as any).getImageProperties(img);
+      const pdfWidth = pdfAportes.internal.pageSize.getWidth() - 4 * bufferX;
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdfAportes.text("Aportes",10,15);
+      pdfAportes.addImage(img, 'PNG', bufferX, bufferY, pdfWidth, pdfHeight, undefined, 'FAST');
+      return pdfAportes;
+    }).then((pdfAportesResult) => {
+      pdfAportesResult.save(`${new Date().toISOString()}_aportes.pdf`);
+    });
+  }
 
 }
